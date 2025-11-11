@@ -11,5 +11,6 @@
     "Dr. John Smith",
   ),
   branch: "Computer Science",
+  lang: "en",
   academic-year: "2025-2026",
 )

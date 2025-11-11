@@ -55,3 +55,9 @@ More improvements will come soon.
 - Forked From [ensias-report-template](https://github.com/essmehdi/ensias-report-template)
 - Updated Logos and Mentions to ones related to IMSIU
 - Made the Table of Figures and Table of Tables Conditional
+
+### 0.2.2
+
+- Fixed the Lang issue
+- Added Features from ilm
+- Fixed the Tables Condition

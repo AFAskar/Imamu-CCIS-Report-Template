@@ -15,7 +15,12 @@
   branch: none,
   academic-year: none,
   lang: none,
-  footer-text: "ENSIAS",
+  figure-index: (enabled: false, title: ""),
+  table-index: (enabled: false, title: ""),
+  listing-index: (enabled: false, title: ""),
+  bibliography: none,
+  arabic: false,
+  footer-text: "IMSIU",
   features: (),
   heading-numbering: "1.1",
   accent-color: rgb("#ff4136"),
@@ -43,6 +48,16 @@
       }
     },
   )
+
+  if lang == none {
+    // Fallback by the time the param gets removed after deprecation
+    if arabic {
+      lang = "ar"
+    } else {
+      lang = "en"
+    }
+  }
+
 
   if not supported-langs.contains(lang) {
     panic("Unsupported `lang` value. Supported languages: " + supported-langs.join(","))
@@ -235,25 +250,52 @@
 
   pagebreak()
 
-  // Table of figures.if there are figures.
-  if figure.where(kind: image).len() > 0 {
-    outline(
-      title: dict.figures_table,
-      target: figure.where(kind: image),
-    )
-    pagebreak()
-  }
-
-  // Table of tables, if there are tables.
-  if figure.where(kind: table).len() > 0 {
-    outline(
-      title: dict.tables_table,
-      target: figure.where(kind: table),
-    )
-    pagebreak()
-  }
-
-
   // Main body.
   body
+
+  // Display bibliography.
+  if bibliography != none {
+    pagebreak()
+    show std-bibliography: set text(0.85em)
+    // Use default paragraph properties for bibliography.
+    show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto)
+    bibliography
+  }
+
+  // Display indices of figures, tables, and listings.
+  let fig-t(kind) = figure.where(kind: kind)
+  let has-fig(kind) = counter(fig-t(kind)).get().at(0) > 0
+  if figure-index.enabled or table-index.enabled or listing-index.enabled {
+    show outline: set heading(outlined: true)
+    context {
+      let imgs = figure-index.enabled and has-fig(image)
+      let tbls = table-index.enabled and has-fig(table)
+      let lsts = listing-index.enabled and has-fig(raw)
+      if imgs or tbls or lsts {
+        // Note that we pagebreak only once instead of each each individual index. This is
+        // because for documents that only have a couple of figures, starting each index
+        // on new page would result in superfluous whitespace.
+        pagebreak()
+      }
+
+      if imgs {
+        outline(
+          title: figure-index.at("title", default: "Index of Figures"),
+          target: fig-t(image),
+        )
+      }
+      if tbls {
+        outline(
+          title: table-index.at("title", default: "Index of Tables"),
+          target: fig-t(table),
+        )
+      }
+      if lsts {
+        outline(
+          title: listing-index.at("title", default: "Index of Listings"),
+          target: fig-t(raw),
+        )
+      }
+    }
+  }
 }
