@@ -54,7 +54,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REGISTRY_REPO }}
-          token: ${{ secrets.REGISTRY_TOKEN }}
+          # Use an SSH deploy key instead of a PAT. The secret must contain the PRIVATE key
+          ssh-key: ${{ secrets.REGISTRY_TOKEN }}
+          persist-credentials: true
           path: typst-packages
 
       - name: Release package
