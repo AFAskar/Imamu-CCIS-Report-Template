@@ -1,10 +1,11 @@
-# ENSIAS Report Typst Template
+# IMAMU CCIS Report Typst Template
 
-A Typst template to quickly make reports for projects at ENSIAS. This template was created based on our reports that we also made for our projects.
+A Typst template to quickly make reports for projects at Imam Mohammed ibn Saud Islamic University (IMAMU), College of Computer and Information Sciences (CCIS).
+This repository is a fork of the ENSIAS Report Typst Template and was adapted to match the styles and requirements used at IMAMU CCIS.
 
 ## What does it provide?
 
-For now, it provides a first page style that matches the common reports style used and encouraged at ENSIAS.
+For now, it provides a first page style that matches the common report style used and encouraged at IMAMU CCIS.
 
 It also provides a style for first level headings to act as chapters.
 
