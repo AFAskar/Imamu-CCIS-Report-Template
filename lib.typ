@@ -8,20 +8,19 @@
   subtitle: none,
   header: none,
   school-logo: none,
-  company-logo: none,
+  Department-logo: none,
   authors: (),
   mentors: (),
   jury: (),
   branch: none,
   academic-year: none,
-  french: false,
   lang: none,
   footer-text: "ENSIAS",
   features: (),
   heading-numbering: "1.1",
   accent-color: rgb("#ff4136"),
   defense-date: none,
-  body
+  body,
 ) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
@@ -30,7 +29,7 @@
     number-align: center,
     footer: context {
       // Omit page number on the first page
-      let page-number = counter(page).get().at(0);
+      let page-number = counter(page).get().at(0)
       if page-number > 1 {
         line(length: 100%, stroke: 0.5pt)
         v(-2pt)
@@ -42,17 +41,8 @@
           #academic-year
         ]
       }
-    }
+    },
   )
-
-  if lang == none {
-    // Fallback by the time the param gets removed after deprecation
-    if french {
-      lang = "fr"
-    } else {
-      lang = "en"
-    }
-  }
 
   if not supported-langs.contains(lang) {
     panic("Unsupported `lang` value. Supported languages: " + supported-langs.join(","))
@@ -64,49 +54,45 @@
   set heading(numbering: heading-numbering)
 
   show heading: it => {
-      if it.level == 1 and it.numbering != none {
-        if features.contains("full-page-chapter-title") {
-          pagebreak()
+    if it.level == 1 and it.numbering != none {
+      if features.contains("full-page-chapter-title") {
+        pagebreak()
 
-          v(1fr)
-          [
-            #text(weight: "regular", size: 30pt)[
-              #dict.chapter #counter(heading).display()
-            ]
-            #linebreak()
-            #text(weight: "bold", size: 36pt)[
-              #it.body
-            ]
-            #line(start: (0%, -1%), end: (15%, -1%), stroke: 2pt + accent-color)
+        v(1fr)
+        [
+          #text(weight: "regular", size: 30pt)[
+            #dict.chapter #counter(heading).display()
           ]
-          v(1fr)
+          #linebreak()
+          #text(weight: "bold", size: 36pt)[
+            #it.body
+          ]
+          #line(start: (0%, -1%), end: (15%, -1%), stroke: 2pt + accent-color)
+        ]
+        v(1fr)
 
-          pagebreak()
-        } else {
-          pagebreak()
-          v(40pt)
-          text(size: 30pt)[#dict.chapter #counter(heading).display() #linebreak() #it.body ]
-          v(60pt)
-        }
+        pagebreak()
       } else {
-        v(5pt)
-        [#it]
-        v(12pt)
+        pagebreak()
+        v(40pt)
+        text(size: 30pt)[#dict.chapter #counter(heading).display() #linebreak() #it.body ]
+        v(60pt)
       }
+    } else {
+      v(5pt)
+      [#it]
+      v(12pt)
+    }
   }
 
   if features.contains("header-chapter-name") {
     set page(header: context {
       let all-headings = query(heading.where(level: 1))
-      let current-page-headings = all-headings.filter(h =>
-        h.location().page() == here().page()
-      )
+      let current-page-headings = all-headings.filter(h => h.location().page() == here().page())
       if current-page-headings.len() > 0 {
         return none
       }
-      let headings = all-headings.filter(h =>
-        h.location().page() < here().page()
-      )
+      let headings = all-headings.filter(h => h.location().page() < here().page())
       if headings != () {
         let current-heading = headings.last()
         let count = counter(heading).at(current-heading.location()).at(0)
@@ -150,7 +136,7 @@
     #h(1fr)
     #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
       #align(end + horizon)[
-        #company-logo
+        #Department-logo
       ]
     ]
   ]
@@ -219,7 +205,7 @@
           }
         ]
       }
-    ]
+    ],
   )
 
   align(center + bottom)[
@@ -249,20 +235,24 @@
 
   pagebreak()
 
-  // Table of figures.
-  outline(
-    title: dict.figures_table,
-    target: figure.where(kind: image)
-  )
+  // Table of figures.if there are figures.
+  if figure.where(kind: image).len() > 0 {
+    outline(
+      title: dict.figures_table,
+      target: figure.where(kind: image),
+    )
+    pagebreak()
+  }
 
-  pagebreak()
+  // Table of tables, if there are tables.
+  if figure.where(kind: table).len() > 0 {
+    outline(
+      title: dict.tables_table,
+      target: figure.where(kind: table),
+    )
+    pagebreak()
+  }
 
-  outline(
-    title: dict.tables_table,
-    target: figure.where(kind: table)
-  )
-
-  pagebreak()
 
   // Main body.
   body

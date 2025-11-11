@@ -24,7 +24,7 @@ More improvements will come soon.
     "Mehdi Essalehi"
   ),
   school-logo: image("images/IMSIU_Logo.png"), // Replace with [] to remove the school logo
-  company-logo: image("images/CCIS_Logo.png"),
+  Department-logo: image("images/CCIS_Logo.png"),
   mentors: (
     "Pr. John Smith (Internal)",
     "Jane Doe (External)"
@@ -41,14 +41,14 @@ More improvements will come soon.
 // Put then your content here
 ```
 
-**Additional parameters**
+## Additional parameters
 
 ```typ
 (
   header: [ // OPTIONAL: Text placed on top of the first page (Usually for the full school name)
-    Mohammed V University
+    Imam Mohammed ibn Saud Islamic University
     #linebreak()
-    National Higher School of Computer Science and Systems Analysis
+    College of Computer and Information Sciences (CCIS)
   ],
   defense-date: "September 10th, 2025", // OPTIONAL: Needs the jury list to be displayed. The defense date to be added
 
@@ -79,3 +79,9 @@ More improvements will come soon.
   - Added chapter name in header. This can be enabled by activating the `header-chapter-name` feature in the features parameter.
 - **Fixes and enhancements**
   - Removed some parameters that were forced on the document like font. The template should not include something that can be specified from outside.
+
+### 0.2.1
+
+- Forked From [ensias-report-template](https://github.com/essmehdi/ensias-report-template)
+- Updated Logos and Mentions to ones related to IMSIU
+- Made the Table of Figures and Table of Tables Conditional
