@@ -11,36 +11,6 @@ It also provides a style for first level headings to act as chapters.
 
 More improvements will come soon.
 
-## Quick start
-
-```typ
-#import "@preview/red-agora:0.2.0": project
-
-#show: project.with(
-  title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
-  subtitle: "Second year internship report",
-  authors: (
-    "Amine Hadnane",
-    "Mehdi Essalehi"
-  ),
-  school-logo: image("images/IMSIU_Logo.png"), // Replace with [] to remove the school logo
-  Department-logo: image("images/CCIS_Logo.png"),
-  mentors: (
-    "Pr. John Smith (Internal)",
-    "Jane Doe (External)"
-  ),
-  jury: (
-    "Pr. John Smith",
-    "Pr. Jane Doe"
-  ),
-  branch: "College of Computer and Information Sciences (CCIS)",
-  academic-year: "2025-2026",
-  footer-text: "Imam Mohammed ibn Saud Islamic University", // Text used in left side of the footer
-)
-
-// Put then your content here
-```
-
 ## Additional parameters
 
 ```typ
