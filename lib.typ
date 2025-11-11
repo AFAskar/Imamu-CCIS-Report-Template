@@ -127,7 +127,7 @@
     #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
       #align(start + horizon)[
         #if school-logo == none {
-          image("images/ENSIAS.svg")
+          image("images/IMSIU_Logo.png")
         } else {
           school-logo
         }
