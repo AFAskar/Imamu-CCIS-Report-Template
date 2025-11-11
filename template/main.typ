@@ -1,20 +1,15 @@
-#import "@preview/red-agora:0.1.1": project
+#import "@preview/ImamU-Report-template:0.2.1": *
 
 #show: project.with(
   title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
-  subtitle: "Second year internship report",
+  subtitle: "CCIS Senior Project Report Template",
   authors: (
-    "Amine Hadnane",
-    "Mehdi Essalehi"
+    "Abdulaziz BinAskar",
+    "John Doe",
   ),
   mentors: (
-    "Pr. John Smith (Internal)",
-    "Jane Doe (External)"
+    "Dr. John Smith",
   ),
-  jury: (
-    "Pr. John Smith",
-    "Pr. Jane Doe"
-  ),
-  branch: "Software Engineering",
-  academic-year: "2077-2078"
+  branch: "Computer Science",
+  academic-year: "2025-2026",
 )

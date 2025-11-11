@@ -1,5 +1,5 @@
 [package]
-name = "ImamU - CCIS Report template"
+name = "ImamU-Report-template"
 description = "A Typst template to quickly scaffold a report for your projects and Assignments at ImamU"
 version = "0.2.1"
 entrypoint = "lib.typ"
