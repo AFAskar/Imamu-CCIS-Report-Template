@@ -22,8 +22,8 @@ More improvements will come soon.
     "Amine Hadnane",
     "Mehdi Essalehi"
   ),
-  school-logo: image("images/ENSIAS.svg"), // Replace with [] to remove the school logo
-  company-logo: image("images/company.svg"),
+  school-logo: image("images/IMSIU_Logo.png"), // Replace with [] to remove the school logo
+  company-logo: image("images/CCIS_Logo.png"),
   mentors: (
     "Pr. John Smith (Internal)",
     "Jane Doe (External)"
@@ -32,9 +32,9 @@ More improvements will come soon.
     "Pr. John Smith",
     "Pr. Jane Doe"
   ),
-  branch: "Software Engineering",
-  academic-year: "2077-2078",
-  footer-text: "ENSIAS", // Text used in left side of the footer
+  branch: "College of Computer and Information Sciences (CCIS)",
+  academic-year: "2025-2026",
+  footer-text: "Imam Mohammed ibn Saud Islamic University", // Text used in left side of the footer
 )
 
 // Put then your content here
