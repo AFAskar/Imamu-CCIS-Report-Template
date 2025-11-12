@@ -44,3 +44,9 @@
 - Fixed Table of Contents appearing without any content
 - Added Dept Logo to the default template
 - updated the thumbnail to match our changes
+
+## 0.2.6
+
+- Added CONTRIBUTING.md with guidelines following Typst Universe rules.
+- Added a Contributing section to the README.
+- Aligned `typst.toml` description and metadata with Universe recommendations; bumped patch version.

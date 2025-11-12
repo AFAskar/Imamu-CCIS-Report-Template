@@ -28,3 +28,7 @@ More improvements will come soon.
   accent-color: rgb("#ff4136") // OPTIONAL: Change the default accent color of the document
 )
 ```
+
+## Contributing
+
+Contributions are welcome! Please read the contribution guidelines in `CONTRIBUTING.md` for how to propose changes, keep the manifest compliant with Typst Universe, and update the changelog.
