@@ -110,5 +110,10 @@ Suggested format (follow existing file style):
 - Bump version in `typst.toml` if not already bumped, adjust README import versions if present.
 - Update `docs/changelog.md` with the release entry and date.
 - Tag the release (`vX.Y.Z`) only when ready to publish to typst universe.
+- Generate a new thumbnail if needed here is the command
+
+```sh
+magick -density 250 template/main.pdf[0] -flatten template/thumbnail.png
+```
 
 Thanks again for contributing!

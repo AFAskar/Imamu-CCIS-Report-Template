@@ -1,4 +1,4 @@
-#import "@preview/ImamU-Report-template:0.2.5": *
+#import "@preview/ImamU-Report-template:0.2.6": *
 
 #show: project.with(
   title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
