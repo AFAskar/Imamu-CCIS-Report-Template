@@ -1,8 +1,9 @@
 #let IMAGE_BOX_MAX_WIDTH = 120pt
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
+#import "@preview/codly:1.3.0": *
+#import "@preview/codly-languages:0.1.1": *
 
 #let supported-langs = ("en", "fr", "ar")
-
 #let project(
   title: "",
   subtitle: none,
@@ -125,7 +126,6 @@
       }
     })
   }
-
   if header != none {
     h(1fr)
     box(width: 60%)[
@@ -248,7 +248,17 @@
   // Table of contents.
   outline(depth: 3, indent: auto)
 
-  pagebreak()
+  // Conditionally enable fancy code blocks and codly show rules
+  let fancy = features.contains("fancy-codeblocks")
+
+  // Make the show rule conditional by choosing the function to apply
+  let codly_init_fn = if fancy { codly-init.with() } else { it => it }
+  show: codly_init_fn
+
+  // Activate fancy code blocks only when the feature flag is enabled
+  if fancy {
+    codly(languages: codly-languages)
+  }
 
   // Main body.
   body
@@ -299,3 +309,5 @@
     }
   }
 }
+
+
