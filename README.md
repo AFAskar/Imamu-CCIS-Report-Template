@@ -69,3 +69,9 @@ More improvements will come soon.
 ### 0.2.4
 
 - Renamed Justfile to fulfil typst universe rules
+
+### 0.2.5
+
+- Fixed Table of Contents appearing without any content
+- Added Dept Logo to the default template
+- updated the thumbnail to match our changes
