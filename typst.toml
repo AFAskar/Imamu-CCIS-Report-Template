@@ -1,7 +1,7 @@
 [package]
 name = "report-template-imsiu"
 description = "A Typst template to quickly scaffold a report for your projects and Assignments at imsiu"
-version = "0.2.2"
+version = "0.2.3"
 entrypoint = "lib.typ"
 license = "MIT"
 authors = ["Abdulaziz Bin Askar"]

@@ -24,7 +24,7 @@ More improvements will come soon.
 
   heading-numbering: "1.1", // OPTIONAL: Numbering of the document
   lang: "ar", // OPTIONAL: Supported languages: "en" (default if ommited), "ar", "fr"
-  features: ("full-page-chapter-title", "header-chapter-name"), // All features are optional and not activated by default. Include the desire features.
+  features: ("full-page-chapter-title", "header-chapter-name","fancy-codeblocks"), // All features are optional and not activated by default. Include the desire features.
   accent-color: rgb("#ff4136") // OPTIONAL: Change the default accent color of the document
 )
 ```
@@ -61,3 +61,7 @@ More improvements will come soon.
 - Fixed the Lang issue
 - Added Features from ilm
 - Fixed the Tables Condition
+
+### 0.2.3
+
+- Codely Integration for Fancy Codeblocks
