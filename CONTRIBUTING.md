@@ -109,6 +109,6 @@ Suggested format (follow existing file style):
 - Merge PRs after review.
 - Bump version in `typst.toml` if not already bumped, adjust README import versions if present.
 - Update `docs/changelog.md` with the release entry and date.
-- Tag the release (`vX.Y.Z`).
+- Tag the release (`vX.Y.Z`) only when ready to publish to typst universe.
 
 Thanks again for contributing!
