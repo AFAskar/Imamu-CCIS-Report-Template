@@ -65,3 +65,7 @@ More improvements will come soon.
 ### 0.2.3
 
 - Codely Integration for Fancy Codeblocks
+
+### 0.2.4
+
+- Renamed Justfile to fulfil typst universe rules
