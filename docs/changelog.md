@@ -50,3 +50,9 @@
 - Added CONTRIBUTING.md with guidelines following Typst Universe rules.
 - Added a Contributing section to the README.
 - Aligned `typst.toml` description and metadata with Universe recommendations; bumped patch version.
+
+### 0.2.7
+
+- Changed the Name of the Package
+- Changed The Styling of Links
+- Fixing the Package Check?

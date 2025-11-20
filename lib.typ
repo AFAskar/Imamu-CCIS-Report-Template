@@ -1,14 +1,14 @@
 #let IMAGE_BOX_MAX_WIDTH = 120pt
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
 #import "@preview/codly:1.3.0": *
-#import "@preview/codly-languages:0.1.1": *
+#import "@preview/codly-languages:0.1.2": *
 #let supported-langs = ("en", "fr", "ar")
 #let project(
   title: "",
   subtitle: none,
   header: none,
   school-logo: none,
-  Department-logo: none,
+  department-logo: none,
   authors: (),
   mentors: (),
   jury: (),
@@ -159,10 +159,10 @@
     #h(1fr)
     #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
       #align(end + horizon)[
-        #if Department-logo == none {
+        #if department-logo == none {
           image("images/CCIS_Logo.png")
         } else {
-          Department-logo
+          department-logo
         }
       ]
     ]
