@@ -56,3 +56,7 @@
 - Changed the Name of the Package
 - Changed The Styling of Links
 - Fixing the Package Check?
+
+### 0.2.8
+
+- Changed the Name to Remove IMSIU
