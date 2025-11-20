@@ -1,6 +1,6 @@
 [package]
-name = "report-template-imsiu"
-description = "CCIS project & assignment reports at IMSIU."
+name = "askarian-imsiu-report"
+description = "Unofficial CCIS project & assignment report Template at IMSIU."
 version = "0.2.6"
 entrypoint = "lib.typ"
 license = "MIT"
