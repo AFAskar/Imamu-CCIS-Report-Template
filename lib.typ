@@ -15,6 +15,7 @@
   branch: none,
   academic-year: none,
   lang: none,
+  abstract: none,
   figure-index: (enabled: false, title: ""),
   table-index: (enabled: false, title: ""),
   listing-index: (enabled: false, title: ""),
@@ -255,6 +256,16 @@
     }
   ]
 
+
+  // Abstract section
+  if abstract != none {
+    pagebreak()
+    align(center)[
+      #text(size: 16pt, weight: "bold")[#dict.at("abstract", default: "Abstract")]
+    ]
+    v(12pt)
+    abstract
+  }
 
   // Table of contents: render only if more than 3 headings exist.
   context {
