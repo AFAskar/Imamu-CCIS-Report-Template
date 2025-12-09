@@ -336,6 +336,7 @@
       }
       if abbreviation-index.enabled {
         set heading(numbering: none)
+        set par(justify: false)
         abbr.list(title: abbreviation-index.title)
         pagebreak()
       }
