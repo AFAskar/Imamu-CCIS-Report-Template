@@ -14,9 +14,9 @@
   school-logo: none,
   department-logo: none,
   authors: (),
-  mentors: (),
+  Supervisors: (),
   acknowledgement: none,
-  jury: (),
+  Examiners: (),
   branch: none,
   academic-year: none,
   lang: none,
@@ -234,28 +234,28 @@
       }
     ],
     [
-      // Mentor
-      #if mentors != none and mentors.len() > 0 {
+      // Supervisor
+      #if Supervisors != none and Supervisors.len() > 0 {
         align(end)[
           #text(weight: "bold")[
-            #if mentors.len() > 1 {
-              dict.mentor_plural
+            #if Supervisors.len() > 1 {
+              dict.Supervisor_plural
             } else {
-              dict.mentor
+              dict.Supervisor
             }
             #linebreak()
           ]
-          #for mentor in mentors {
-            mentor
+          #for Supervisor in Supervisors {
+            Supervisor
             linebreak()
           }
         ]
       }
-      // Jury
-      #if defense-date == none and jury != none and jury.len() > 0 {
+      // Examiners
+      #if defense-date == none and Examiners != none and Examiners.len() > 0 {
         align(end)[
-          *#dict.jury* #linebreak()
-          #for prof in jury {
+          *#dict.Examiners* #linebreak()
+          #for prof in Examiners {
             [#prof #linebreak()]
           }
         ]
@@ -264,11 +264,11 @@
   )
 
   align(center + bottom)[
-    #if defense-date != none and jury != none and jury.len() > 0 {
+    #if defense-date != none and Examiners != none and Examiners.len() > 0 {
       [*#dict.defended_on_pre_date #defense-date #dict.defended_on_post_date:*]
-      // Jury
+      // Examiners
       align(center)[
-        #for prof in jury {
+        #for prof in Examiners {
           [#prof #linebreak()]
         }
       ]

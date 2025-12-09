@@ -77,3 +77,4 @@
 - Incorporated Upstream Update to Fix Optional Features
 - Fixed Bug where if the user Justifies the Document it justifies even the Abbreviation List
 - Justification at the Library Level not the Text Level
+- Updated I18n To match Requirements of University

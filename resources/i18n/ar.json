@@ -1,9 +1,9 @@
 {
-  "mentor": "المشرف",
-  "mentor_plural": "المشرفون",
-  "jury": "لجنة المناقشة",
-  "author": "المؤلف",
-  "author_plural": "المؤلفون",
+  "supervisor": "المشرف",
+  "supervisor_plural": "المشرفون",
+  "examiners": "لجنة المناقشة",
+  "author": "الطالب",
+  "author_plural": "الطلاب",
   "academic_year": "السنة الجامعية",
 
   "figures_table": "قائمة الأشكال",

@@ -7,7 +7,7 @@
     "Abdulaziz BinAskar",
     "John Doe",
   ),
-  mentors: (
+  supervisors: (
     "Dr. John Smith",
   ),
   branch: "Computer Science",
