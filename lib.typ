@@ -4,6 +4,9 @@
 #import "@preview/codly-languages:0.1.10": *
 #import "@preview/abbr:0.3.0"
 #let supported-langs = ("en", "fr", "ar")
+
+#let full-page-chapter = state("full-page-chapter", false)
+
 #let project(
   title: "",
   subtitle: none,
@@ -33,6 +36,21 @@
   defense-date: none,
   body,
 ) = {
+  if lang == none {
+    // Fallback by the time the param gets removed after deprecation
+    if arabic {
+      lang = "ar"
+    } else {
+      lang = "en"
+    }
+  }
+
+  if not supported-langs.contains(lang) {
+    panic("Unsupported `lang` value. Supported languages: " + supported-langs.join(","))
+  }
+
+  let dict = json("resources/i18n/" + lang + ".json")
+
   // Set the document's basic properties.
   set document(author: authors, title: title)
   show: abbr.show-rule
@@ -43,13 +61,40 @@
     // If array, treat as manual list
     abbr.make(..abbreviations)
   }
+
+  set page(header: context {
+    let headings = query(heading.where(level: 1).before(here()))
+    let current-page-headings = query(heading.where(level: 1).after(here())).filter(h => (
+      h.location().page() == here().page()
+    ))
+    if headings == () {
+      []
+    } else {
+      let current-chapter = headings.last()
+      if current-chapter.level == 1 and current-chapter.numbering != none {
+        let in-page-heading = if current-page-headings.len() > 0 { current-page-headings.first() } else { none }
+        if in-page-heading == none or in-page-heading.level != 1 or in-page-heading.numbering == none {
+          let count = counter(heading).at(current-chapter.location()).at(0)
+          align(end)[
+            #text(accent-color, weight: "bold")[
+              #dict.chapter #count:
+            ]
+            #current-chapter.body
+            #line(length: 100%)
+          ]
+        }
+      }
+    }
+  }) if features.contains("header-chapter-name")
+
   set page(
     numbering: "1",
     number-align: center,
     footer: context {
       // Omit page number on the first page
       let page-number = counter(page).get().at(0)
-      if page-number > 1 {
+
+      if page-number > 1 and not full-page-chapter.get() {
         line(length: 100%, stroke: 0.5pt)
         v(-2pt)
         text(size: 12pt, weight: "regular")[
@@ -60,6 +105,7 @@
           #academic-year
         ]
       }
+      full-page-chapter.update(false)
     },
   )
 
@@ -72,22 +118,6 @@
     }
   }
 
-  if lang == none {
-    // Fallback by the time the param gets removed after deprecation
-    if arabic {
-      lang = "ar"
-    } else {
-      lang = "en"
-    }
-  }
-
-
-  if not supported-langs.contains(lang) {
-    panic("Unsupported `lang` value. Supported languages: " + supported-langs.join(","))
-  }
-
-  let dict = json("resources/i18n/" + lang + ".json")
-
   set text(lang: lang, size: 13pt)
   set heading(
     numbering: (..numbers) => if numbers.pos().len() <= heading-numbering.max-level {
@@ -98,6 +128,7 @@
     if it.level == 1 and it.numbering != none {
       if features.contains("full-page-chapter-title") {
         pagebreak()
+        full-page-chapter.update(true)
 
         v(1fr)
         [
@@ -115,42 +146,19 @@
         pagebreak()
       } else {
         pagebreak()
+        full-page-chapter.update(false)
         v(40pt)
         text(size: 30pt)[#dict.chapter #counter(heading).display() #linebreak() #it.body ]
         v(60pt)
       }
     } else {
+      full-page-chapter.update(false)
       v(5pt)
       [#it]
       v(12pt)
     }
   }
 
-  if features.contains("header-chapter-name") {
-    set page(header: context {
-      let all-headings = query(heading.where(level: 1))
-      let current-page-headings = all-headings.filter(h => h.location().page() == here().page())
-      if current-page-headings.len() > 0 {
-        return none
-      }
-      let headings = all-headings.filter(h => h.location().page() < here().page())
-      if headings != () {
-        let current-heading = headings.last()
-        let count = counter(heading).at(current-heading.location()).at(0)
-        if count < 1 or current-heading.numbering == none {
-          return none
-        }
-        [
-          #h(1fr)
-          #text(accent-color, weight: "bold")[
-            #dict.chapter #count:
-          ]
-          #current-heading.body
-          #line(length: 100%)
-        ]
-      }
-    })
-  }
   if header != none {
     h(1fr)
     box(width: 60%)[
