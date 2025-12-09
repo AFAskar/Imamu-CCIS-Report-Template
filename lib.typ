@@ -29,7 +29,7 @@
   footer-text: "IMSIU",
   features: (),
   heading-numbering: (format: "1.1", max-level: 3),
-  accent-color: rgb("#ff4136"),
+  accent-color: rgb("#0F95D4"),
   defense-date: none,
   body,
 ) = {
