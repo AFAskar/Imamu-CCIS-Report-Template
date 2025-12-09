@@ -75,3 +75,4 @@
 - Moved the thumbnail from the template directory to the root
 - Updated accent color default to the university color
 - Incorporated Upstream Update to Fix Optional Features
+- Fixed Bug where if the user Justifies the Document it justifies even the Abbreviation List
