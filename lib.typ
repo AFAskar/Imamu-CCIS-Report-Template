@@ -166,20 +166,20 @@
   block[
     #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
       #align(start + horizon)[
-        #if school-logo == none {
-          image("images/IMSIU_Logo.png")
+        #if department-logo == none {
+          image("images/CCIS_Logo.png")
         } else {
-          school-logo
+          department-logo
         }
       ]
     ]
     #h(1fr)
     #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
       #align(end + horizon)[
-        #if department-logo == none {
-          image("images/CCIS_Logo.png")
+        #if school-logo == none {
+          image("images/IMSIU_Logo.png")
         } else {
-          department-logo
+          school-logo
         }
       ]
     ]
