@@ -2,6 +2,7 @@
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
 #import "@preview/codly:1.3.0": *
 #import "@preview/codly-languages:0.1.10": *
+#import "@preview/abbr:0.3.0"
 #let supported-langs = ("en", "fr", "ar")
 #let project(
   title: "",
@@ -11,11 +12,15 @@
   department-logo: none,
   authors: (),
   mentors: (),
+  acknowledgement: none,
   jury: (),
   branch: none,
   academic-year: none,
   lang: none,
   abstract: none,
+  abbreviations: none,
+  abbreviation-index: (enabled: false, title: "List of Abbreviations"),
+  table-of-contents: (enabled: true, depth: 3, min-heading: 3, title: "Table of Contents"),
   figure-index: (enabled: false, title: ""),
   table-index: (enabled: false, title: ""),
   listing-index: (enabled: false, title: ""),
@@ -23,13 +28,21 @@
   arabic: false,
   footer-text: "IMSIU",
   features: (),
-  heading-numbering: "1.1",
+  heading-numbering: (format: "1.1", max-level: 3),
   accent-color: rgb("#ff4136"),
   defense-date: none,
   body,
 ) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
+  show: abbr.show-rule
+  if type(abbreviations) == str {
+    // If string, treat as CSV filename
+    abbr.load(abbreviations)
+  } else if type(abbreviations) == array {
+    // If array, treat as manual list
+    abbr.make(..abbreviations)
+  }
   set page(
     numbering: "1",
     number-align: center,
@@ -76,8 +89,11 @@
   let dict = json("resources/i18n/" + lang + ".json")
 
   set text(lang: lang, size: 13pt)
-  set heading(numbering: heading-numbering)
-
+  set heading(
+    numbering: (..numbers) => if numbers.pos().len() <= heading-numbering.max-level {
+      return numbering(heading-numbering.format, ..numbers)
+    },
+  )
   show heading: it => {
     if it.level == 1 and it.numbering != none {
       if features.contains("full-page-chapter-title") {
@@ -170,7 +186,7 @@
   ]
 
   // Title box
-  align(center + horizon)[
+  align(center)[
     #if subtitle != none {
       text(size: 14pt, tracking: 2pt)[
         #smallcaps[
@@ -256,12 +272,20 @@
     }
   ]
 
+  if acknowledgement != none {
+    pagebreak()
+    align(left)[
+      #text(size: 30pt, weight: "bold")[#dict.at("acknowledgement", default: "Acknowledgements")]
+    ]
+    v(12pt)
+    acknowledgement
+  }
 
   // Abstract section
   if abstract != none {
     pagebreak()
-    align(center)[
-      #text(size: 16pt, weight: "bold")[#dict.at("abstract", default: "Abstract")]
+    align(left)[
+      #text(size: 30pt, weight: "bold")[#dict.at("abstract", default: "Abstract")]
     ]
     v(12pt)
     abstract
@@ -270,10 +294,10 @@
   // Table of contents: render only if more than 3 headings exist.
   context {
     let heading-count = query(heading).len()
-    if heading-count > 3 {
+    if heading-count > table-of-contents.min-heading or table-of-contents.enabled {
       pagebreak()
 
-      outline(depth: 3, indent: auto)
+      outline(depth: table-of-contents.depth, indent: auto, title: table-of-contents.title)
     }
   }
 
@@ -283,27 +307,14 @@
   // Make the show rule conditional by choosing the function to apply
   let codly_init_fn = if fancy { codly-init.with() } else { it => it }
   show: codly_init_fn
-
   // Activate fancy code blocks only when the feature flag is enabled
   if fancy {
     codly(languages: codly-languages)
   }
 
-  // Main body.
-  body
-
-  // Display bibliography.
-  if bibliography != none {
-    pagebreak()
-    show std-bibliography: set text(0.85em)
-    // Use default paragraph properties for bibliography.
-    show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto)
-    bibliography
-  }
-
   // Display indices of figures, tables, and listings.
   let fig-t(kind) = figure.where(kind: kind)
-  let has-fig(kind) = counter(fig-t(kind)).get().at(0) > 0
+  let has-fig(kind) = query(fig-t(kind)).len() > 0
   if figure-index.enabled or table-index.enabled or listing-index.enabled {
     show outline: set heading(outlined: true)
     context {
@@ -314,6 +325,10 @@
         // Note that we pagebreak only once instead of each each individual index. This is
         // because for documents that only have a couple of figures, starting each index
         // on new page would result in superfluous whitespace.
+      }
+      if abbreviation-index.enabled {
+        set heading(numbering: none)
+        abbr.list(title: abbreviation-index.title)
         pagebreak()
       }
 
@@ -322,6 +337,7 @@
           title: figure-index.at("title", default: "Index of Figures"),
           target: fig-t(image),
         )
+        pagebreak()
       }
       if tbls {
         outline(
@@ -336,6 +352,15 @@
         )
       }
     }
+  }
+
+  // Main body.
+  body
+
+  // Display bibliography.
+  if bibliography != none {
+    pagebreak()
+    bibliography
   }
 }
 

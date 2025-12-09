@@ -64,3 +64,12 @@
 ### 0.2.9
 
 - Problem with CI/CD ignore this
+
+### 0.3.0
+
+- Added List of Abbreviation support using the abbr package
+- Added Heading level setting and default to 3 as per university guidelines
+- Raised the Title and subtitle in the title page
+- added Abstract and Acknowledgements as per university guidelines
+- Made Table of Contents configurable by the user
+- Moved the thumbnail from the template directory to the root
