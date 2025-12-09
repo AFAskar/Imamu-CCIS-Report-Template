@@ -74,3 +74,4 @@
 - Made Table of Contents configurable by the user
 - Moved the thumbnail from the template directory to the root
 - Updated accent color default to the university color
+- Incorporated Upstream Update to Fix Optional Features
