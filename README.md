@@ -22,7 +22,7 @@ More improvements will come soon.
   ],
   defense-date: "September 10th, 2025", // OPTIONAL: Needs the jury list to be displayed. The defense date to be added
 
-  heading-numbering: "1.1", // OPTIONAL: Numbering of the document
+  heading-numbering: (format:"1.1",max-level:3), // OPTIONAL: Numbering of the document
   lang: "ar", // OPTIONAL: Supported languages: "en" (default if ommited), "ar", "fr"
   features: ("full-page-chapter-title", "header-chapter-name","fancy-codeblocks"), // All features are optional and not activated by default. Include the desire features.
   accent-color: rgb("#ff4136") // OPTIONAL: Change the default accent color of the document

@@ -1,4 +1,4 @@
-#import "@preview/askars-imsiu-report:0.2.9": *
+#import "@preview/askars-imsiu-report:0.3.0": *
 
 #show: project.with(
   title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
