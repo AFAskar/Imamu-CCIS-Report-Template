@@ -76,3 +76,4 @@
 - Updated accent color default to the university color
 - Incorporated Upstream Update to Fix Optional Features
 - Fixed Bug where if the user Justifies the Document it justifies even the Abbreviation List
+- Justification at the Library Level not the Text Level
