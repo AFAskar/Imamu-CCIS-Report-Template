@@ -119,6 +119,9 @@
   }
 
   set text(lang: lang, size: 13pt)
+  set par(justify: true)
+  show figure: set par(justify: false)
+  show table: set par(justify: false)
   set heading(
     numbering: (..numbers) => if numbers.pos().len() <= heading-numbering.max-level {
       return numbering(heading-numbering.format, ..numbers)
